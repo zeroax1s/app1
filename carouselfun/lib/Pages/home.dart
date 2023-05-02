@@ -34,48 +34,18 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.fromLTRB(10, 100, 0, 0),
         child: ListView(children: [
           CarouselSlider(
-            items: [
-              Container(
+            items: myImages.map((path) {
+              return Container(
                 margin: EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: AssetImage(myImages[0]),
+                    image: AssetImage(path),
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: AssetImage(myImages[1]),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: AssetImage(myImages[2]),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: AssetImage(myImages[3]),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
+              );
+            }).toList(),
             options: CarouselOptions(
               height: 380.0,
               enlargeCenterPage: true,
