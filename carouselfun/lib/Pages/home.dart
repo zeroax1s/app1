@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.green[700],
-        title: Text('Ferrets'),
+        title: Text('Ferret Gallery'),
         centerTitle: true,
         elevation: 0,
       ),
