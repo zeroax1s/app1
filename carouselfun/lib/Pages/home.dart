@@ -81,14 +81,18 @@ class _HomeState extends State<Home> {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[700],
-                  foregroundColor: Colors.white),
-              onPressed: () {
-                // Do something when the button is pressed
-              },
-              child: Text('Click me'),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                icon: Icon(Icons.add),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green[700],
+                    foregroundColor: Colors.white),
+                onPressed: () {
+                  // Do something when the button is pressed
+                },
+                label: Text('Add Image'),
+              ),
             ),
           )
         ],
