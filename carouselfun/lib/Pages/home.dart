@@ -19,6 +19,8 @@ class _HomeState extends State<Home> {
     'img/ferret3.jpg',
     'img/ferret4.jpg'
   ];
+  bool _autoPlay = true;
+  final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,26 @@ class _HomeState extends State<Home> {
         title: Text('Ferret Gallery'),
         centerTitle: true,
         elevation: 0,
+        actions: <Widget>[
+          TextButton.icon(
+            icon: Icon(_autoPlay ? Icons.pause : Icons.play_arrow,
+                color: Colors.grey[300]),
+            onPressed: () {
+              setState(() {
+                _autoPlay = !_autoPlay;
+              });
+              if (_autoPlay) {
+                _controller.startAutoPlay();
+              } else {
+                _controller.stopAutoPlay();
+              }
+            },
+            label: Text(' '),
+          ),
+        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 100, 0, 0),
+        padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
         child: ListView(children: [
           CarouselSlider(
             items: myImages.map((path) {
@@ -49,7 +68,7 @@ class _HomeState extends State<Home> {
             options: CarouselOptions(
               height: 380.0,
               enlargeCenterPage: true,
-              autoPlay: true,
+              autoPlay: _autoPlay,
               aspectRatio: 16 / 9,
               autoPlayCurve: Curves.fastOutSlowIn,
               enableInfiniteScroll: true,
