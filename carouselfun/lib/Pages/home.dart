@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         actions: <Widget>[
           TextButton.icon(
             icon: Icon(_autoPlay ? Icons.pause : Icons.play_arrow,
-                color: Colors.grey[300]),
+                color: Colors.white),
             onPressed: () {
               setState(() {
                 _autoPlay = !_autoPlay;
@@ -49,34 +49,49 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-        child: ListView(children: [
-          CarouselSlider(
-            items: myImages.map((path) {
-              return Container(
-                margin: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: AssetImage(path),
-                    fit: BoxFit.cover,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+            child: CarouselSlider(
+              items: myImages.map((path) {
+                return Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: AssetImage(path),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-            options: CarouselOptions(
-              height: 380.0,
-              enlargeCenterPage: true,
-              autoPlay: _autoPlay,
-              aspectRatio: 16 / 9,
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enableInfiniteScroll: true,
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              viewportFraction: 0.8,
+                );
+              }).toList(),
+              options: CarouselOptions(
+                height: 380.0,
+                enlargeCenterPage: true,
+                autoPlay: _autoPlay,
+                aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                viewportFraction: 0.8,
+              ),
             ),
           ),
-        ]),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green[700],
+                  foregroundColor: Colors.white),
+              onPressed: () {
+                // Do something when the button is pressed
+              },
+              child: Text('Click me'),
+            ),
+          )
+        ],
       ),
     );
   }
