@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int activeIndex = 0;
   final controller = CarouselController();
-  final myImages = [
+  List<String> myImages = [
     'img/ferret1.jpg',
     'img/ferret2.jpg',
     'img/ferret3.jpg',
@@ -21,6 +23,16 @@ class _HomeState extends State<Home> {
   ];
   bool _autoPlay = true;
   final CarouselController _controller = CarouselController();
+
+  Future getImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        myImages.add(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +101,7 @@ class _HomeState extends State<Home> {
                     backgroundColor: Colors.green[700],
                     foregroundColor: Colors.white),
                 onPressed: () {
-                  // Do something when the button is pressed
+                  getImage();
                 },
                 label: Text('Add Image'),
               ),
